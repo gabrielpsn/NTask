@@ -9,4 +9,6 @@ module.exports = {
       underscored: true
     }
   }
+  jwtSecret: "Nta$K-API",
+  jwtSession: {session: false}
 }
