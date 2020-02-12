@@ -1,10 +1,15 @@
 const passport = require("passport")
-const { Strategy } = require("passport-jwt")
+const { Strategy, ExtractJwt } = require("passport-jwt")
 
 module.exports = app => {
   const Users = app.db.models.Users
   const cfg = app.libs.config
-  const strategy = new Strategy({secretOrKey: cfg.jwtSecret},
+
+  var opts = {};
+  opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+  opts.secretOrKey = cfg.jwtSecret
+
+  const strategy = new Strategy(opts,
     (payload, done) => {
       Users.findById(payload.id)
         .then(user => {
@@ -20,7 +25,7 @@ module.exports = app => {
     })
   passport.use(strategy)
   return {
-    inicialize: () => {
+    initialize: () => {
       return passport.initialize()
     },
     authenticate: () => {

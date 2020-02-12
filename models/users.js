@@ -21,6 +21,13 @@ module.exports = (sequelize, DataType) => {
       validate: {
         notEmpty: true
       }
+    },
+    password: {
+      type: DataType.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
     }
   },
   {
@@ -29,11 +36,9 @@ module.exports = (sequelize, DataType) => {
         const salt = bcrypt.genSaltSync()
         user.password = bcrypt.hashSync(user.password, salt)
       }
-    }
-  },
-  {
+    },
     classMethods: {
-      associate: (models) => {
+      associate: models => {
         Users.hasMany(models.Tasks)
       },
       isPassword: (encodedPassword, password) => {

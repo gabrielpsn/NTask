@@ -4,7 +4,7 @@
   "description": "Api de tarefas",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test mocha test/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,10 @@
     "passport-jwt": "^4.0.0",
     "sequelize": "^5.21.4",
     "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.0.1",
+    "supertest": "^4.0.2"
   }
 }
