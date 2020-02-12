@@ -7,7 +7,7 @@ describe("Routes: Token", () => {
         .then(() => {
           Users.create({
             name: "Jhon",
-            email: "jhon11@mail.net",
+            email: "teste@gmail.com",
             password: "12345"
           })
             .then(done())
@@ -17,7 +17,7 @@ describe("Routes: Token", () => {
       it("return authenticate user token", done => {
         request.post("/token")
           .send({
-            email: "jhon11@mail.net",
+            email: "teste@gmail.com",
             password: "12345"
           })
           .expect(200)
